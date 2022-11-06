@@ -22,7 +22,7 @@ public class Josepfu2 {
         private Boy first = null;
 
         public void addBoys(int nums) {
-            if (nums < 1) {
+            if (nums <=0 ) {
                 System.out.printf("nums: %d 的个数有误,无法添加", nums);
                 return;
             }
@@ -67,7 +67,7 @@ public class Josepfu2 {
          * @param nums  小孩的总个数
          */
         public void countBoys(int k, int count, int nums) {
-            if (first == null || k < 1 || k > nums) {
+            if (first == null || k <=0  || k > nums) {
                 System.out.printf("k: %d 不合法,无法报数.", k);
                 return;
             }

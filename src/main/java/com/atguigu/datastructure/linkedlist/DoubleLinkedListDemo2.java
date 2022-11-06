@@ -50,10 +50,7 @@ public class DoubleLinkedListDemo2 {
             // 2.最后一个节点的next域 指向添加的节点 lastNode.next = heroNode
             // 定义辅助指针,首先指向头结点
             HeroNode temp = head;
-            while (true) {
-                if (temp.getNext() == null) {
-                    break;
-                }
+            while (temp.getNext() != null) {
                 // temp指针后移
                 temp = temp.getNext();
             }
@@ -69,6 +66,7 @@ public class DoubleLinkedListDemo2 {
             boolean flag = false;
             while (true) {
                 if (temp.getNext() == null) {
+                    flag = true;
                     break;
                 }
                 // 当前节点的no 大于 要插入的节点的no, 位置找到，就在temp的后面插入

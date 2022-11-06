@@ -22,6 +22,7 @@ public class PrimAlgorithm2 {
                 {10000, 10000, 10000, 4, 5, 10000, 6},
                 {2, 3, 10000, 10000, 4, 6, 10000},};
         MiniConnectGraph miniConnectGraph = new MiniConnectGraph();
+
         MiniGenerateTree miniGenerateTree = new MiniGenerateTree();
         miniGenerateTree.createMiniGenerateTree(miniConnectGraph, vertexNumber, vertexArr, neighborMatrixArr);
 

@@ -10,8 +10,21 @@ import java.util.Arrays;
  */
 public class QuickSort2 {
     public static void main(String[] args) {
-        int[] arr = {-9,78,0,23,-567,70, -1,900, 4561};
-        //int[] arr = {-9, 78, 0, 23, -567, 70};
+        int[] arr = {-9, 78, 0, 23, -567, 70, -1, 900, 4561};
+        // 第一轮:
+        // int[] arr = {-9,  78,  0, 23,-567,70, -1,900, 4561};
+        //              l(坑)                              r
+        // int[] arr = {-567,78,0,23, -567,   70, -1,900, 4561};
+        //              l             r(坑)
+        // int[] arr = {-567,78,0,23,  78,70, -1,900, 4561};
+        //                   l(坑)      r
+
+        // 第二轮:
+        // int[] arr = {-567, 78, 0, 23, 78, 70, -1, 900, 4561};
+        //                    l
+        //                    r
+        // int[] arr = {-567, -9, 0, 23, 78, 70, -1, 900, 4561};
+
         System.out.println("排序前");
         System.out.println(Arrays.toString(arr));
 
@@ -44,7 +57,7 @@ public class QuickSort2 {
                 right--;
             }
             if (left < right) {
-                // 右指针 指向的元素 < pivot,需要移动该元素(即将该元素移入坑中,同时right指向的位置为新的坑.)
+                // 右指针 指向的元素 < pivot,需要移动该元素(即将该元素移入坑中,同时right指向的位置变成了新的坑.)
                 array[left] = array[right];
             }
 

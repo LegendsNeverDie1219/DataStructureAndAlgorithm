@@ -24,14 +24,15 @@ public class MergeSort2 {
 
     public static void mergeSort(int[] array, int left, int right, int[] temp) {
         // 最少要有两个元素 才可以继续分解. 左闭右闭
-        if (left < right) {
-            int middle = (left + right) / 2;
-            mergeSort(array, left, middle, temp);
-            mergeSort(array, middle + 1, right, temp);
-
-            // 合并
-            mergeMethod(array, left, right, middle, temp);
+        if (left >= right) {
+            return;
         }
+        int middle = (left + right) / 2;
+        mergeSort(array, left, middle, temp);
+        mergeSort(array, middle + 1, right, temp);
+
+        // 合并
+        mergeMethod(array, left, right, middle, temp);
     }
 
     public static void mergeMethod(int[] array, int left, int right, int middle, int[] temp) {

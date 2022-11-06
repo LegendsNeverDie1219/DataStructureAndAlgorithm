@@ -276,6 +276,7 @@ public class SingleLinkedListDemo2 {
                 // 指针后移
                 temp = temp.getNext();
             }
+
             if (flag) {
                 temp.setName(newHeroNode.getName());
                 temp.setNickName(newHeroNode.getNickName());

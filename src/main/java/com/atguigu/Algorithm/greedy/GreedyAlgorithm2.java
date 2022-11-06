@@ -35,8 +35,7 @@ public class GreedyAlgorithm2 {
 				//如果当前这个集合包含的未覆盖地区的数量，比maxKey指向的集合地区还多
 				//就需要重置maxKey
 				// tempSet.size() >broadcasts.get(bestBroadcast).size()) 体现出贪心算法的特点,每次都选择最优的
-				if(tempSet.size() > 0 &&
-						(bestBroadcast == null || tempSet.size() > bestBroadcsstCoverCities)){
+				if(tempSet.size() > bestBroadcsstCoverCities){
 					bestBroadcast = key;
 					bestBroadcsstCoverCities = tempSet.size();
 				}

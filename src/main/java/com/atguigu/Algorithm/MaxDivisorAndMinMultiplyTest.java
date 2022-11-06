@@ -88,4 +88,6 @@ public class MaxDivisorAndMinMultiplyTest {
         }
         return minCommonMultiply;
     }
+
+
 }

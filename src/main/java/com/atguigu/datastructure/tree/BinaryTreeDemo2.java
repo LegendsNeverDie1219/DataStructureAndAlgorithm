@@ -211,6 +211,7 @@ public class BinaryTreeDemo2 {
         public void infixOrder() {
             if (this.getLeft() != null) {
                 this.getLeft().infixOrder();
+
             }
             System.out.println(this);
 
@@ -245,12 +246,12 @@ public class BinaryTreeDemo2 {
          */
         public HeroNode preOrderSearch(int no) {
             System.out.println("进入前序遍历");
-            //比较当前结点是不是
+            //1.比较当前结点是不是.如果是返回
             if (this.no == no) {
                 return this;
             }
-            //1.则判断当前结点的左子节点是否为空，如果不为空，则递归前序查找
-            //2.如果左递归前序查找，找到结点，则返回
+            //2.当前节点不是,则判断当前结点的左子节点是否为空，如果不为空，则递归前序查找
+            //如果左递归前序查找，找到结点，则返回
             HeroNode resNode = null;
             if (this.left != null) {
                 resNode = this.left.preOrderSearch(no);
@@ -258,8 +259,8 @@ public class BinaryTreeDemo2 {
             if (resNode != null) {//说明我们左子树找到
                 return resNode;
             }
-            //1.左递归前序查找，找到结点，则返回，否继续判断，
-            //2.当前的结点的右子节点是否为空，如果不空，则继续向右递归前序查找
+            //3.左递归前序查找，没有找到结点
+            //当前的结点的右子节点是否为空，如果不空，则继续向右递归前序查找
             if (this.right != null) {
                 resNode = this.right.preOrderSearch(no);
             }
@@ -348,6 +349,5 @@ public class BinaryTreeDemo2 {
                 this.right.delNode(no);
             }
         }
-
     }
 }

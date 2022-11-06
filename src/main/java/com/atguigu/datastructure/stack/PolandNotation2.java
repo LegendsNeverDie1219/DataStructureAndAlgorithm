@@ -42,7 +42,7 @@ public class PolandNotation2 {
                 // pop出两个数，并运算， 再入栈
                 int num2 = Integer.parseInt(stack.pop());
                 int num1 = Integer.parseInt(stack.pop());
-                int res = 0;
+                int res;
                 switch (item) {
                     case "+":
                         res = num1 + num2;
@@ -76,7 +76,7 @@ public class PolandNotation2 {
         // 4.遇到( ,直接入s1 栈
         // 5.遇到) ,则依次弹出s1 栈的运算符,并添加到 s2 中,直到遇到( 之后结束, 把( )都去掉.
         // 6.遇到运算符,比较其与s1栈顶运算符的优先级
-        // 6.1如果s1 为空,或者 当前扫描运算符优先级 大于栈顶运算符优先级,则直接入栈s1
+        // 6.1如果s1 为空,栈顶运算符优先级 小于 当前扫描运算符优先级,则直接入栈s1
         // 6.2否则,则弹出s1栈顶的运算符 c ,并添加到 s2中,再次转到第6步执行,直到不满足条件,将扫描的运算符添加到s1中.
         // 7.把s1中的剩余的运算符弹出并添加到s2中
         // 8.s2栈的逆序输出就是结果.(如果s2是集合,则就是正序输出结果)
@@ -95,7 +95,7 @@ public class PolandNotation2 {
                 // 去掉左括号,并且右括号也不添加
                 s1.pop();
             } else {
-                while (s1.size() != 0 && Operation.getValue(str) <= Operation.getValue(s1.peek())) {
+                while (s1.size() != 0 && Operation.getValue(s1.peek()) >= Operation.getValue(str)  ) {
                     s2.add(s1.pop());
                 }
                 s1.push(str);
@@ -105,43 +105,6 @@ public class PolandNotation2 {
             s2.add(s1.pop());
         }
         return s2;
-    }
-
-    private static List<String> str2InfixExpressionList(String expression) {
-        // String expression = "1+((2+3)*4)-5"
-        // String expression = "10+((20+3)*4)-500"; 如果是多位数字这样就会有问题.
-        List<String> infixExpressionList = new ArrayList<>();
-        // for (int i = 0; i < expression.length(); i++) {
-        //     String element =  String.valueOf(expression.charAt(i));
-        //     infixExpressionList.add(element);
-        // }
-        // 定义一个索引,去扫描该字符串
-        int index = 0;
-        StringBuilder keepNum = new StringBuilder();
-        while (index < expression.length()) {
-            // 1. 如果是非数字,则直接加入集合中
-            // 2.如果是数字,则需要扫描下一个字符, 如果index == length-1 或者下个字符不是数字,才将拼串结果加入到集合中,否则一直拼串
-            //  0 -> 48 9 -> 57
-            char c = expression.charAt(index);
-            if (c < 48 || c > 57) {
-                infixExpressionList.add(String.valueOf(c));
-            } else {
-                keepNum.append(c);
-                if (index == expression.length() - 1) {
-                    infixExpressionList.add(keepNum.toString());
-                    keepNum = new StringBuilder();
-                } else {
-                    char nextChar = expression.charAt(index + 1);
-                    if (nextChar < 48 || nextChar > 57) {
-                        infixExpressionList.add(keepNum.toString());
-                        keepNum = new StringBuilder();
-                    }
-                }
-
-            }
-            index++;
-        }
-        return infixExpressionList;
     }
 
     private static List<String> str2InfixExpressionList2(String expression) {
@@ -215,6 +178,7 @@ public class PolandNotation2 {
                     result = DIV;
                     break;
                 default:
+                   // throw new RuntimeException("老子遇到括号了");
                     System.out.println("不存在该运算符" + operation);
                     break;
             }
